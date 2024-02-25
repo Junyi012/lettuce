@@ -85,7 +85,7 @@ Installation
 * Change into the cloned directory
 * Run the install script::
 
-    python setup.py install
+    python setup.py install # or pip install .
 
 * Run the test cases::
 
