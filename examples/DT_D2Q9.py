@@ -26,6 +26,8 @@ plt.xlabel('Wavenumber')
 plt.ylabel('Energy')
 plt.savefig('energy_spectrum_initialized_D2Q9.png')
 
+#Before the simulation is executed, the pressure field is obtained by solving the pressure poisson equation. In addition, f_neq is initialized to obtain stress tensor at the start of the simulation.'''
+
 simulation.initialize_pressure()
 simulation.initialize_f_neq()
 mlups = simulation.step(num_steps=15000)

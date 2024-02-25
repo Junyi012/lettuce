@@ -2,6 +2,7 @@ import lettuce as lt
 import matplotlib.pyplot as plt
 import numpy as np
 lattice = lt.Lattice(lt.D2Q21, device = "cuda", use_native=False)
+print(lattice.stencil)
 flow = lt.DecayingTurbulence(resolution=256, reynolds_number=1000, mach_number=0.01, lattice=lattice)
 collision = lt.BGKCollision(lattice, tau=0.02)
 print("tau:", flow.units.relaxation_parameter_lu)

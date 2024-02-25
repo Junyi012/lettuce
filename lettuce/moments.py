@@ -6,7 +6,7 @@ import warnings
 import torch
 import lettuce
 from lettuce.util import LettuceException, InefficientCodeWarning, get_subclasses, ExperimentalWarning
-from lettuce.stencils import Stencil, D1Q3, D2Q9, D3Q27
+from lettuce.stencils import Stencil, D1Q3, D2Q9, D3Q27, D2Q21
 import numpy as np
 
 __all__ = [
@@ -29,6 +29,9 @@ def get_default_moment_transform(lattice):
         return D1Q3Transform(lattice)
     if lattice.stencil == D2Q9:
         return D2Q9Lallemand(lattice)
+    if lattice.stencil == D2Q21:
+        return D2Q9Lallemand(lattice)
+
     else:
         raise LettuceException(f"No default moment transform for lattice {lattice}.")
 
