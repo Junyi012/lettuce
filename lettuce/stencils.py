@@ -3,7 +3,7 @@ import numpy as np
 from typing import Optional
 from lettuce.native_generator import NativeStencil
 
-__all__ = ["Stencil", "D1Q3", "D2Q9", "D3Q15", "D3Q19", "D3Q27"]
+__all__ = ["Stencil", "D1Q3", "D2Q9", "D2Q21","D3Q15", "D3Q19", "D3Q27"]
 
 
 class Stencil:
@@ -38,6 +38,23 @@ class D2Q9(Stencil):
     cs = 1 / np.sqrt(3)
     opposite = [0, 3, 4, 1, 2, 7, 8, 5, 6]
 
+'''D2Q21 stencial implemente by Junyi'''
+class D2Q21(Stencil):
+    e = np.array([[0, 0],  # Rest particle
+    [1, 0], [0, 1], [-1, 0], [0, -1],  # Cardinal directions 
+    [1, 1], [-1, 1], [-1, -1], [1, -1],  # Diagonal directions 
+    [2, 0], [0, 2], [-2, 0], [0, -2],  # Next-nearest cardinal 
+    [2, 2], [-2, 2], [-2, -2], [2, -2],  # Next-nearest diagonal (2NE, 2NW, 2SW, 2SE), already CCW
+    [3, 0], [0, 3], [-3, 0], [0, -3],  # Third-nearest cardinal 
+    ])
+    w = np.array([91/324]+
+                4*[1/12]+
+                4*[2/27]+
+                4*[7/360]+
+                4*[1/432]+
+                4*[1/1620])
+    cs = 1 / np.sqrt(3)
+    opposite = [0, 3, 4, 1, 2, 7, 8, 5, 6,11,12,9,10,15,16,13,14,19,20,17,18]
 
 class D3Q15(Stencil):
     e = np.array([
